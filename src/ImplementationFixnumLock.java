@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
 
 public abstract class ImplementationFixnumLock implements FixnumLock {
     protected final static int threadNumber = 20;
@@ -63,5 +64,13 @@ public abstract class ImplementationFixnumLock implements FixnumLock {
 
     public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
         return false;
+    }
+
+    public Condition newCondition() {
+        throw new UnsupportedOperationException("Conditions does not supports by this type of lock");
+    }
+
+    public void lockInterruptibly() throws InterruptedException {
+        throw new InterruptedException();
     }
 }
