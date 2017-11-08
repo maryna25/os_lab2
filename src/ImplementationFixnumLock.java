@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public abstract class ImplementationFixnumLock implements FixnumLock {
     protected final static int threadNumber = 20;
@@ -53,5 +54,14 @@ public abstract class ImplementationFixnumLock implements FixnumLock {
 
     private void resetPid() {
         pid = -1;
+    }
+
+
+    public boolean tryLock() {
+        return false;
+    }
+
+    public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+        return false;
     }
 }
