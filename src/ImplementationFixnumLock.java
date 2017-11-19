@@ -67,7 +67,7 @@ public abstract class ImplementationFixnumLock implements FixnumLock {
     }
 
     public Condition newCondition() {
-        throw new UnsupportedOperationException("Conditions does not supports by this type of lock");
+        throw new UnsupportedOperationException("Conditions are not supported");
     }
 
     public void lockInterruptibly() throws InterruptedException {
