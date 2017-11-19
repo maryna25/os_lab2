@@ -9,7 +9,7 @@ public abstract class ImplementationFixnumLock implements FixnumLock {
 
     int pid = -1;
 
-    private static Object sync = new Object();
+    private static final Object sync = new Object();
 
 
     public static <T>ArrayList<T> getFilledList(int size, T value) {
