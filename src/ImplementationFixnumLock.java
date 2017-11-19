@@ -12,8 +12,8 @@ public abstract class ImplementationFixnumLock implements FixnumLock {
     private static Object sync = new Object();
 
 
-    public static ArrayList<Boolean> getFilledList(int size, boolean value) {
-        ArrayList<Boolean> list = new ArrayList<>();
+    public static <T>ArrayList<T> getFilledList(int size, T value) {
+        ArrayList<T> list = new ArrayList<>();
         for(int i = 0; i < size; ++i) {
             list.add(value);
         }
