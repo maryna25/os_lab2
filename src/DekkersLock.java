@@ -4,18 +4,21 @@ public class DekkersLock extends ImplementationFixnumLock {
 
     static int threadNumber = 2;
 
-    private static int turn = 0;
+    private static int turn = 0; // Id of thread
+
     private static ArrayList<Boolean> flag = getFilledList(threadNumber, false);
 
     @Override
     public void lock() {
         flag.set(pid, true);
-        while( flag.get(invertedPid())) {
+
+        while(flag.get(getInvPid())) {
+
             if (turn != pid) {
                 flag.set(pid, false);
-                while (turn != pid) {
-                    Thread.yield();
-                }
+
+                while (turn != pid) { Thread.yield(); }
+
                 flag.set(pid, true);
             }
         }
@@ -24,10 +27,10 @@ public class DekkersLock extends ImplementationFixnumLock {
     @Override
     public void unlock() {
         flag.set(pid, false);
-        turn = invertedPid();
+        turn = getInvPid();
     }
 
-    private int invertedPid() {
-        return pid^1;
+    private int getInvPid() {
+        return pid ^ 1;
     }
 }
