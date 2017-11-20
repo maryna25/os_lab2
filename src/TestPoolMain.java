@@ -9,7 +9,7 @@ public class TestPoolMain {
         Pool pool = new Pool(POOL_SIZE);
         System.out.println("Starting...");
         try {
-           pool.testLock(BakeryLock.class);
+           pool.testLock(DekkersLock.class);
         } catch (Exception e) {
            System.out.println(e.getMessage());
         }

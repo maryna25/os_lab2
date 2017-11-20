@@ -7,6 +7,7 @@ public class FixnumLockTestThread extends Thread {
         System.out.println("Creating new thread...");
         this.lock = lock;
     }
+
     @Override
     public void run() {
 

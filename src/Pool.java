@@ -12,7 +12,7 @@ public class Pool {
         System.out.println("Creating pool with " + size + " threads...");
         System.out.println("Class: " + fixnumLockClass.toString());
         for(int i = 0; i < size; ++i) {
-            BakeryLock newInst = new BakeryLock();
+            DekkersLock newInst = new DekkersLock();
             System.out.println("newInst: " + newInst);
             FixnumLockTestThread test = new FixnumLockTestThread(newInst);
             System.out.println("FixnumLockTestThread" + test);
