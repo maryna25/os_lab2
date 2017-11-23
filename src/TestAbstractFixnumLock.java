@@ -1,5 +1,4 @@
 public class TestAbstractFixnumLock {
-    // test: повторна реєстрація
     public static TestFixnumLock fixnumLock = new TestFixnumLock();
 
     public class TestThread extends Thread {
