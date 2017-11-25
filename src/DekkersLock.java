@@ -1,36 +1,37 @@
 import java.util.ArrayList;
 
-public class DekkersLock extends ImplementationFixnumLock {
+public class DekkersLock extends AbstractFixnumLock {
 
     static int threadNumber = 2;
 
     private static int turn = 0; // Id of thread
 
-    private static ArrayList<Boolean> flag = getFilledList(threadNumber, false);
+    protected ArrayList<Boolean> flag = getFilledList(threadNumber, false);
 
     @Override
     public void lock() {
-        flag.set(pid, true);
+        flag.set(getId(), true);
 
         while(flag.get(getInvPid())) {
 
-            if (turn != pid) {
-                flag.set(pid, false);
+            if (turn != getId()) {
+                flag.set(getId(), false);
 
-                while (turn != pid) { Thread.yield(); }
+                // Teacher said to comment that
+                //while (turn != getId()) { Thread.yield(); }
 
-                flag.set(pid, true);
+                flag.set(getId(), true);
             }
         }
     }
 
     @Override
     public void unlock() {
-        flag.set(pid, false);
+        flag.set(getId(), false);
         turn = getInvPid();
     }
 
     private int getInvPid() {
-        return pid ^ 1;
+        return getId() ^ 1;
     }
 }
