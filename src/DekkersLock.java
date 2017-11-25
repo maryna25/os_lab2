@@ -10,23 +10,24 @@ public class DekkersLock extends ImplementationFixnumLock {
 
     @Override
     public void lock() {
-        flag.set(pid, true);
+        flag.set(getId(), true);
 
         while(flag.get(getInvPid())) {
 
-            if (turn != pid) {
-                flag.set(pid, false);
+            if (turn != getId()) {
+                flag.set(getId(), false);
 
-                while (turn != pid) { Thread.yield(); }
+                // Teacher said to comment that
+                while (turn != getId()) { Thread.yield(); }
 
-                flag.set(pid, true);
+                flag.set(getId(), true);
             }
         }
     }
 
     @Override
     public void unlock() {
-        flag.set(pid, false);
+        flag.set(getId(), false);
         turn = getInvPid();
     }
 
