@@ -2,15 +2,13 @@ public class FixnumLockTestThread extends Thread {
     private FixnumLock lock;
 
     public FixnumLockTestThread(FixnumLock lock) {
-
         super();
         System.out.println("Creating new thread...");
         this.lock = lock;
     }
     @Override
     public void run() {
-
-        while(!lock.register()) {
+        while (lock.register() == 0) {
             Thread.yield();
         }
 

@@ -77,14 +77,10 @@ public abstract class AbstractFixnumLock implements FixnumLock {
     }
 
     @Override
-    public void lock() {
-
-    }
+    public void lock() {}
 
     @Override
-    public void unlock() {
-
-    }
+    public void unlock() {}
 
     public boolean tryLock() {
         return false;
