@@ -10,8 +10,6 @@ public class RunnableWithDekkersLock implements Runnable {
 
     @Override
     public void run() {
-        while (lock.register() == 0) { Thread.yield(); }
-
         for (int i = 0; i < 1000000; i++) {
             lock.lock();
             System.out.println("Locked thread: " + Thread.currentThread().getName());
@@ -21,8 +19,6 @@ public class RunnableWithDekkersLock implements Runnable {
             System.out.println("Unlocked thread: " + Thread.currentThread().getName());
             lock.unlock();
         }
-
-        lock.unregister();
     }
 
     private void f() {

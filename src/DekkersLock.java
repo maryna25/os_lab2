@@ -13,13 +13,8 @@ public class DekkersLock extends AbstractFixnumLock {
         flag.set(getId(), true);
 
         while(flag.get(getInvPid())) {
-
             if (turn != getId()) {
                 flag.set(getId(), false);
-
-                // Teacher said to comment that
-                while (turn != getId()) { Thread.yield(); }
-
                 flag.set(getId(), true);
             }
         }
