@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class BakeryLock extends AbstractFixnumLock {
 
-    private int threadNumber = 20;
+    private int threadNumber = 6;
 
     protected ArrayList<Integer> tickets = getFilledList(threadNumber, 0);
     protected ArrayList<Boolean> choosing = getFilledList(threadNumber, false);
@@ -35,7 +35,7 @@ public class BakeryLock extends AbstractFixnumLock {
                 }
             }
         }
-        System.out.println("In the critical section: " + tickets.get(getId()));
+        // System.out.println("In the critical section: " + tickets.get(getId()));
     }
 
     public void unlock() {
