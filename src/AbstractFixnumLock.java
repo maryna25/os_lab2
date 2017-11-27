@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 
 public abstract class AbstractFixnumLock implements FixnumLock {
-    private int threadNumber = 20;
+    public int threadNumber = 20;
     public  int numberOfRegistered = 0;
 
     ArrayList<Boolean> pidList = getFilledList(threadNumber, false);

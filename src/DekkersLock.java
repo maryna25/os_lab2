@@ -1,32 +1,38 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DekkersLock extends AbstractFixnumLock {
 
-    static int threadNumber = 2;
+    private volatile int turn = 0; // Id of thread
 
-    private static int turn = 0; // Id of thread
+    protected ArrayList<VolBoolean> flag = getFilledList(threadNumber, new VolBoolean(false));
 
-    protected ArrayList<Boolean> flag = getFilledList(threadNumber, false);
+    DekkersLock() {
+        super(2);
+    }
 
     @Override
     public void lock() {
-        flag.set(getId(), true);
+        int id = getId();
 
-        while(flag.get(getInvPid())) {
+        flag.get(id).setValue(true);
+
+        while(flag.get(getInvPid(id)).getValue()) {
             if (turn != getId()) {
-                flag.set(getId(), false);
-                flag.set(getId(), true);
+                flag.get(id).setValue(false);
+                flag.get(id).setValue(true);
             }
         }
     }
 
     @Override
     public void unlock() {
-        flag.set(getId(), false);
-        turn = getInvPid();
+        int id = getId();
+        flag.set(id, new VolBoolean(false));
+        turn = getInvPid(id);
     }
 
-    private int getInvPid() {
-        return getId() ^ 1;
+    private static int getInvPid(int id) {
+        return id ^ 1;
     }
 }
